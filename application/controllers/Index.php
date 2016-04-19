@@ -8,9 +8,34 @@ class IndexController extends Yaf_Controller_Abstract {
         //读id为2用户的信息
         //$info = Comm_Tool::M('Sample')->getUserInfo(2);
 
-        $info = Comm_Tool::M('Sample')->insert(array('name'=>'巩文'));
+        $info = Comm_Tool::M('Tongji')->insert(array('account'=>'13李小二'));
         Comm_Tool::dump($info);
+
+        $info = Comm_Tool::M('Sample')->insert(array('name'=>'14张三'));
+        Comm_Tool::dump($info);
+
+        $info = Comm_Tool::M('Tongji')->insert(array('account'=>'16李小四'));
+        Comm_Tool::dump($info);
+
+        $info = Comm_Tool::M('Sample')->insert(array('name'=>'134张三'));
+        Comm_Tool::dump($info);
+
+
+        $info = Comm_Tool::M('Sample')->getUserInfo(2);
+        Comm_Tool::dump($info);
+
+
+
         exit;
+
+
+
+
+
+
+
+
+
 
 
         //实便

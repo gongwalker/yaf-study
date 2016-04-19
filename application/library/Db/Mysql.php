@@ -18,6 +18,12 @@ class Db_Mysql
     protected $db;
 
     /**
+     * 数据库名
+     * @var db
+     */
+    public $dbname;
+
+    /**
      * 数据表名
      * @var string
      */
@@ -28,6 +34,8 @@ class Db_Mysql
      * @var string
      */
     public $pk = 'id';
+
+
 
     /**
      * 查询参数
@@ -73,6 +81,22 @@ class Db_Mysql
     {
         $this->_config = $pConfig;
         $this->tablename || $this->tablename = strtolower(substr(get_class($this), 0, -5));
+        $tDB = Comm_Tool::C('db.'.$pConfig);
+        $this->dbname || $this->dbname = substr($tDB['dsn'],strrpos($tDB['dsn'],'=')+1);
+    }
+
+    /**
+     * 数据库连接
+     * @param string $pConfig 配置
+     * @return PDO
+     */
+    static private function instance($pConfig = 'default')
+    {
+        if (empty(self::$instance[$pConfig])) {
+            $tDB = Comm_Tool::C('db.'.$pConfig);
+            self::$instance[$pConfig] = new PDO($tDB['dsn'], $tDB['username'], $tDB['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+        }
+        return self::$instance[$pConfig];
     }
 
     /**
@@ -99,19 +123,6 @@ class Db_Mysql
         }
     }
 
-    /**
-     * 数据库连接
-     * @param string $pConfig 配置
-     * @return PDO
-     */
-    static function instance($pConfig = 'default')
-    {
-        if (empty(self::$instance[$pConfig])) {
-            $tDB = Yaf_Registry::get("config")->db->$pConfig->toArray();
-            self::$instance[$pConfig] = new PDO($tDB['dsn'], $tDB['username'], $tDB['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-        }
-        return self::$instance[$pConfig];
-    }
 
     /**
      * 过滤数据
@@ -204,7 +215,8 @@ class Db_Mysql
     function insert($datas, $pReplace = false)
     {
         if ($this->_filter($datas)) {
-            if ($this->exec(($pReplace ? "REPLACE" : "INSERT") . " INTO `$this->tablename`(`" . join('`,`', array_keys($datas)) . "`) VALUES ('" . join("','", $datas) . "')")) {
+            $sql = ($pReplace ? "REPLACE" : "INSERT") . " INTO `$this->tablename`(`" . join('`,`', array_keys($datas)) . "`) VALUES ('" . join("','", $datas) . "')";
+            if ($this->exec($sql) ){
                 return $this->db->lastInsertId();
             }
         }
@@ -346,11 +358,17 @@ class Db_Mysql
     function getFields($table = '')
     {
         static $fields = array();
+        //如果是操作多个库的话,防止库中的表名相同,所以前面加库名
         $table || $table = $this->tablename;
         # 静态 读取表字段
         if (empty($fields[$table])) {
             # 缓存 读取表字段
-            if (is_file($tFile = APPLICATION_PATH . '/cache/db/fields/' . $table)) {
+            $cache_dir = Comm_Tool::C('db.cache.fields');
+            //如果没有指定缓存目录,则用默认的目录
+            $cache_dir || $cache_dir = Comm_Tool::C('application.directory') . '/cache/db';
+            $cache_dir .= '/' . $this->dbname.'/fields/';
+            Comm_Tool::mkdirs($cache_dir);
+            if (is_file($tFile =  $cache_dir . $table)) {
                 $fields[$table] = unserialize(file_get_contents($tFile, true));
             } # 数据库 读取表字段
             else {
@@ -438,6 +456,7 @@ class Db_Mysql
      */
     function __destruct()
     {
+        $this->db = null;
         self::$instance[$this->_config] = null;
     }
 }
@@ -499,4 +518,3 @@ $mArticle->begin();
 $mArticle->insert(..);
 $mArticle->commit();
 */
-

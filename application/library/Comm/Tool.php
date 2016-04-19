@@ -83,5 +83,18 @@ class Comm_Tool
             return $output;
         }
     }
+
+
+    /**
+     * @desc yaf框架 创建多级目录(递归实现)
+     * @author gwalker
+     * @param $dir
+     * @return bool
+     */
+    public static function mkdirs($dir, $mode = 0755){
+        if (is_dir($dir) || mkdir($dir, $mode)) return TRUE;
+        if (!self::mkdirs(dirname($dir), $mode)) return FALSE;
+        return mkdir($dir, $mode);
+    }
 }
 
