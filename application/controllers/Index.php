@@ -1,16 +1,16 @@
 <?php
 class IndexController extends Yaf_Controller_Abstract {
     public function indexAction() {
-        //$info = Comm_Tool::C();
-        //Comm_Tool::dump($info);
-        //exit;
+        //获取配置文件
+        $info = Comm_Tool::C('db.default.dsn');
+        Comm_Tool::dump($info);
 
+        //读id为2用户的信息
+        //$info = Comm_Tool::M('Sample')->getUserInfo(2);
 
-        $info = Comm_Tool::M('Sample')->getUserInfo(2);
-        print_r($info);
+        $info = Comm_Tool::M('Sample')->insert(array('name'=>'巩文'));
+        Comm_Tool::dump($info);
         exit;
-
-
 
 
         //实便
