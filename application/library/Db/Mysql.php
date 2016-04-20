@@ -149,8 +149,28 @@ class Db_Mysql
      */
     private function _options($pOpt = array())
     {
+        echo '<hr>';
+
+        if(!empty($this->options['where'])) {
+            $where = $this->parseWhere($this->options['where']);
+        }
+
+
+
+            echo $where;
+        exit;
+
+
+        /*
+        Comm_Tool::dump($this->options['where']);
+        //Comm_Tool::dump($pOpt);
+        echo '<hr>';
         # 合并查询条件
-        $tOpt = $pOpt ? array_merge($this->options, $pOpt) : $this->options;
+        $tOpt = $pOpt ? array_merge($pOpt , $this->options) : $this->options;
+        $this->options = array();
+        */
+
+
         $this->options = array();
         # 数据表
         empty($tOpt['table']) && $tOpt['table'] = $this->tablename;
@@ -232,14 +252,18 @@ class Db_Mysql
         if (!$this->_filter($datas)) return false;
         # 条件
         $tOpt = array();
+        //如果data里存在表主键,且没有使用where方法的时候,用此此函数,gongwen 加2016-04-20
         if (isset($datas[$this->pk])) {
             $tOpt = array('where' => "$this->pk='{$datas[$this->pk]}'");
         }
         $tOpt = $this->_options($tOpt);
+        Comm_Tool::dump($tOpt);
         # 更新
         if ($datas && !empty($tOpt['where'])) {
             foreach ($datas as $k1 => $v1) $tSet[] = "`$k1`='$v1'";
-            return $this->exec("UPDATE `" . $tOpt['table'] . "` SET " . join(',', $tSet) . " WHERE " . $tOpt['where']);
+            $sql = "UPDATE `" . $tOpt['table'] . "` SET " . join(',', $tSet) . " WHERE " . $tOpt['where'];
+            echo $sql;
+            return $this->exec($sql);
         }
         return false;
     }
@@ -358,31 +382,30 @@ class Db_Mysql
     function getFields($table = '')
     {
         static $fields = array();
-        //如果是操作多个库的话,防止库中的表名相同,所以前面加库名
         $table || $table = $this->tablename;
         # 静态 读取表字段
-        if (empty($fields[$table])) {
+        if (empty($fields[$this->dbname.'_'.$table])) {
             # 缓存 读取表字段
             $cache_dir = Comm_Tool::C('db.cache.fields');
-            //如果没有指定缓存目录,则用默认的目录
+            #如果没有指定缓存目录,则用默认的目录
             $cache_dir || $cache_dir = Comm_Tool::C('application.directory') . '/cache/db';
             $cache_dir .= '/' . $this->dbname.'/fields/';
             Comm_Tool::mkdirs($cache_dir);
             if (is_file($tFile =  $cache_dir . $table)) {
-                $fields[$table] = unserialize(file_get_contents($tFile, true));
+                $fields[$this->dbname.'_'.$table] = unserialize(file_get_contents($tFile, true));
             } # 数据库 读取表字段
             else {
-                $fields[$table] = array();
+                $fields[$this->dbname.'_'.$table] = array();
                 $this->db || $this->db = self::instance($this->_config);
                 if ($tQuery = $this->db->query("SHOW FULL FIELDS FROM `$table`")) {
                     foreach ($tQuery->fetchAll(2) as $v1) {
-                        $fields[$table][$v1['Field']] = array('type' => $v1['Type'], 'key' => $v1['Key'], 'null' => $v1['Null'], 'default' => $v1['Default'], 'comment' => $v1['Comment']);
+                        $fields[$this->dbname.'_'.$table][$v1['Field']] = array('type' => $v1['Type'], 'key' => $v1['Key'], 'null' => $v1['Null'], 'default' => $v1['Default'], 'comment' => $v1['Comment']);
                     }
-                    file_put_contents($tFile, serialize($fields[$table]));
+                    file_put_contents($tFile, serialize($fields[$this->dbname.'_'.$table]));
                 }
             }
         }
-        return $fields[$table];
+        return $fields[$this->dbname.'_'.$table];
     }
 
     /**
@@ -459,6 +482,102 @@ class Db_Mysql
         $this->db = null;
         self::$instance[$this->_config] = null;
     }
+
+    /**
+     * @param $op sql操作符 例如 > < != >= <= eq nep like 等
+     * @return string
+     * @author gwalker
+     */
+    private function opMap($op){
+        $op = strtoupper(trim($op));
+        static $opmap = array(
+            'EQ' => '=',
+            'NEP' => '!=',
+            'GT' => '>',
+            'EGT' => '>=',
+            'LT' => '<',
+            'ELT' => '<=',
+        );
+        if(isset($opmap[$op])){
+            return $opmap[$op];
+        }else{
+            return $op;
+        }
+    }
+
+    /**
+     * @param $tmpWhere
+     * @return string
+     * @author gwalker
+     */
+    public function parseWhere($tmpWhere){
+        $where = '';
+        if(is_array($tmpWhere))
+        {
+            foreach($tmpWhere as $k=>$v){
+                //如果$k为_string则为"组合查询"
+                if($k=='_string'){
+                    $key = '';
+                    $op = '';
+                    $value = $v;
+                }else{
+                    //如果$v为数据则进行分析
+                    if(is_array($v))
+                    {
+                        $key = $k;
+                        list($op,$value) = $v; //支持 $map['id'] = array('neq',100);
+                        $op = $this->opMap($op);
+                        switch($op){
+                            case 'IN':
+                            case 'NOT IN':
+                            case 'BETWEEN':
+                            case 'NOT BETWEEN':
+                                //每一项加上单引号--start
+                                if(!is_array($value)){
+                                    $value = explode(',',$value);
+                                }
+                                foreach($value as &$tmpv){
+                                    $tmpv = "'".$tmpv."'";
+                                }
+                                //每一项加上单引号--end
+                                //根据不同的操作项,定义不同的格式--start
+                                if($op=='IN' || $op=='NOT IN'){
+                                    $value = implode(',',$value);
+                                }else{
+                                    $value = implode(' AND ',$value);
+                                }
+                                $value = '('.$value.')';
+                                //根据不同的操作项,定义不同的格式--end
+                                break;
+                            case 'EXP':
+                                $op = '';
+                                break;
+                            case 'LIKE':
+                                $value = "'".$value."'";
+                            default:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        $key = $k;
+                        $op = '=';
+                        $value = "'".$v."'";
+                    }
+                }
+
+                $tmpw = $key . ' '.$op .' '.$value;
+                $where .= empty($where) ? $tmpw : ' AND ' .$tmpw;
+            }
+        }
+        else
+        {
+            $where .= $tmpWhere;
+        }
+        return $where;
+    }
+
+
 }
 
 /*

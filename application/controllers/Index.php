@@ -1,28 +1,15 @@
 <?php
 class IndexController extends Yaf_Controller_Abstract {
+    //model数据库操作封装测试
     public function indexAction() {
-        //获取配置文件
-        $info = Comm_Tool::C('db.default.dsn');
-        Comm_Tool::dump($info);
-
-        //读id为2用户的信息
-        //$info = Comm_Tool::M('Sample')->getUserInfo(2);
-
-        $info = Comm_Tool::M('Tongji')->insert(array('account'=>'13李小二'));
-        Comm_Tool::dump($info);
-
-        $info = Comm_Tool::M('Sample')->insert(array('name'=>'14张三'));
-        Comm_Tool::dump($info);
-
-        $info = Comm_Tool::M('Tongji')->insert(array('account'=>'16李小四'));
-        Comm_Tool::dump($info);
-
-        $info = Comm_Tool::M('Sample')->insert(array('name'=>'134张三'));
-        Comm_Tool::dump($info);
+        $User = Comm_Tool::M('user');
+        $User_Score =  Comm_Tool::M('userScore');
 
 
-        $info = Comm_Tool::M('Sample')->getUserInfo(2);
-        Comm_Tool::dump($info);
+
+
+        $re = $User->modifyUser(['uid'=>12]);
+        Comm_Tool::dump($re);
 
 
 
@@ -30,32 +17,85 @@ class IndexController extends Yaf_Controller_Abstract {
 
 
 
+        $info = $User->getUserInfo(2);
+        Comm_Tool::dump($info);
+
+        //访问统计
+        /*
+        $Request = Comm_Tool::M('request');
+        $map = [
+            'time'=>time(),
+            'username'=>'李二'
+        ];
+        $re = $Request->addRequest($map);
+        Comm_Tool::dump($re);
+        */
 
 
 
 
+        //添加用户
+        $map = [
+            'time'=>time(),
+            'username'=>'张三丰'.rand(1,10),
+            'address'=>'中国,北京,朝阳',
+            'other'=>'李可'
+        ];
+        $re = $User->addUser($map);
+        Comm_Tool::dump($re);
 
 
 
+        //添加用户积分
+        $map = [
+            'uid' => 1,
+            'score' => rand(10,100)
+        ];
 
-        //实便
-        $model = new SampleModel();
-        $info = $model->getUserInfo(2);
-        echo '<pre>';
-        print_r($info);
-        echo '</pre>';
+        $re = $User_Score->addUserScore($map);
+        Comm_Tool::dump($re);
 
 
 
-        echo '<hr>';
+        //添加用户
+        $map = [
+            'time'=>time(),
+            'username'=>'张三丰'.rand(1,10),
+            'address'=>'中国,北京,朝阳',
+            'other'=>'李可'
+        ];
+        $re = $User->addUser($map);
+        Comm_Tool::dump($re);
+
+        //addUserScore
+
+
+
+        /*
+        //访问统计
+        $Request = Comm_Tool::M('request');
+        $map = [
+            'time'=>time(),
+            'username'=>'李二'
+        ];
+        $re = $Request->addRequest($map);
+        Comm_Tool::dump($re);
+        */
+
 
     }
 
+    //smarty测试
+    public function smarty(){
+        $this->getView()->assign("content", "hello smarty");
+        $this->getView()->display('index/smarty.html');
+    }
+
+
+    //基本封装函数测试
     public function testAction(){
-        $config = Yaf_Registry::get("config")->db->default;
-        echo '<pre>';
-        print_r($config);
-        echo '<hr>';
+        $info = Comm_Tool::C('db.default.dsn');
+        Comm_Tool::dump($info);
         echo 'index->index->test';
     }
 }

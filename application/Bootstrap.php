@@ -12,6 +12,13 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
         Yaf_Registry::set("config", $config);
     }
 
+    //加入第三方模板引擎smarty
+    public function _initView(Yaf_Dispatcher $dispatcher) {
+        $view= new Smarty_Adapter(null, Yaf_Registry::get("config")->get("smarty"));
+        Yaf_Dispatcher::getInstance()->setView($view);
+    }
+
+
     //设置默认路由
     public function _initDefaultName(Yaf_Dispatcher $dispatcher) {
         $dispatcher->setDefaultModule("Index")->setDefaultController("Index")->setDefaultAction("index");
