@@ -1,17 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4e70067b-ccff-46e0-a76c-1a04d026c023" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/comfun/comfun.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/models/Sample.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/models/Tongji.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="4e70067b-ccff-46e0-a76c-1a04d026c023" name="Default" comment="[^] 对db封类,加where()方法对数组支持">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/controllers/Smarty.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/.cvsignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/.gitattributes" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/Adapter.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/BUGS" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/COPYING.lib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/ChangeLog" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/FAQ" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/INSTALL" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/NEWS" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/QUICK_START" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/README" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/RELEASE_NOTES" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/TODO" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/composer.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/demo/configs/test.conf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/demo/index.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/demo/templates/footer.tpl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/demo/templates/header.tpl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/demo/templates/index.tpl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/Config_File.class.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/Smarty.class.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/Smarty_Compiler.class.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/debug.tpl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.assemble_plugin_filepath.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.assign_smarty_interface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.create_dir_structure.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.display_debug_console.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.get_include_path.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.get_microtime.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.get_php_resource.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.is_secure.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.is_trusted.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.load_plugins.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.load_resource_plugin.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.process_cached_inserts.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.process_compiled_include.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.read_cache_file.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.rm_auto.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.rmdir.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.run_insert_handler.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.smarty_include_php.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.write_cache_file.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.write_compiled_include.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.write_compiled_resource.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/internals/core.write_file.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/block.textformat.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/compiler.assign.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/function.assign_debug_info.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/function.config_load.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/function.counter.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/function.cycle.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/function.debug.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/function.eval.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/function.fetch.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/function.html_checkboxes.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/function.html_image.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/function.html_options.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/function.html_radios.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/function.html_select_date.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/function.html_select_time.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/function.html_table.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/function.mailto.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/function.math.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/function.popup.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/function.popup_init.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.capitalize.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.cat.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.count_characters.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.count_paragraphs.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.count_sentences.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.count_words.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.date_format.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.debug_print_var.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.default.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.escape.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.indent.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.lower.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.nl2br.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.regex_replace.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.replace.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.spacify.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.string_format.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.strip.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.strip_tags.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.truncate.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.upper.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/modifier.wordwrap.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/outputfilter.trimwhitespace.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/shared.escape_special_chars.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/library/Smarty/libs/plugins/shared.make_timestamp.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/models/Request.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/models/User.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/models/userscore.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/smarty/smarty.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/templates_c/%%23^237^237F2C33%%smarty.tpl.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/templates_c/%%2D^2D2^2D28AD7E%%smarty.html.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cache_product/db/maindb/fields/hi_user" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cache_product/db/maindb/fields/hi_userScore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cache_product/db/tongji/fields/tj_request" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cache_product/smarty/templates_c/%%2D^2D2^2D28AD7E%%smarty.html.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/Bootstrap.php" afterPath="$PROJECT_DIR$/application/Bootstrap.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Index.php" afterPath="$PROJECT_DIR$/application/controllers/Index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/library/Db/Mysql.php" afterPath="$PROJECT_DIR$/application/library/Db/Mysql.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/application.ini" afterPath="$PROJECT_DIR$/conf/application.ini" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.php" afterPath="$PROJECT_DIR$/public/index.php" />
     </list>
     <ignored path="yafCode.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,13 +162,13 @@
       <file leaf-file-name="Mysql.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/library/Db/Mysql.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27217126">
-              <caret line="506" column="0" selection-start-line="506" selection-start-column="0" selection-end-line="506" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.3501529">
+              <caret line="509" column="47" selection-start-line="509" selection-start-column="47" selection-end-line="509" selection-end-column="47" />
               <folding>
-                <marker date="1461146896000" expanded="true" signature="6345:6381" placeholder="DELETE FROM " />
-                <marker date="1461146896000" expanded="true" signature="6777:6820" placeholder="DELETE FROM " />
-                <marker date="1461146896000" expanded="true" signature="7266:7358" placeholder="SELECT ${{$t... " />
-                <marker date="1461146896000" expanded="true" signature="8113:8161" placeholder="SELECT ${{$t... " />
+                <marker date="1461147873000" expanded="true" signature="6345:6381" placeholder="DELETE FROM " />
+                <marker date="1461147873000" expanded="true" signature="6777:6820" placeholder="DELETE FROM " />
+                <marker date="1461147873000" expanded="true" signature="7266:7358" placeholder="SELECT ${{$t... " />
+                <marker date="1461147873000" expanded="true" signature="8113:8161" placeholder="SELECT ${{$t... " />
               </folding>
             </state>
           </provider>
@@ -365,6 +461,13 @@
       <option name="number" value="Default" />
       <updated>1461029014287</updated>
     </task>
+    <task id="LOCAL-00001" summary="[^] 对db封类,加where()方法对数组支持">
+      <created>1461147571435</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1461147571435</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -373,6 +476,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30799374" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -400,6 +504,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="[^] 对db封类,加where()方法对数组支持" />
+    <option name="LAST_COMMIT_MESSAGE" value="[^] 对db封类,加where()方法对数组支持" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -435,10 +543,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1461146896000" expanded="true" signature="6345:6381" placeholder="DELETE FROM " />
-            <marker date="1461146896000" expanded="true" signature="6777:6820" placeholder="DELETE FROM " />
-            <marker date="1461146896000" expanded="true" signature="7266:7358" placeholder="SELECT ${{$t... " />
-            <marker date="1461146896000" expanded="true" signature="8113:8161" placeholder="SELECT ${{$t... " />
+            <marker date="1461147873000" expanded="true" signature="6345:6381" placeholder="DELETE FROM " />
+            <marker date="1461147873000" expanded="true" signature="6777:6820" placeholder="DELETE FROM " />
+            <marker date="1461147873000" expanded="true" signature="7266:7358" placeholder="SELECT ${{$t... " />
+            <marker date="1461147873000" expanded="true" signature="8113:8161" placeholder="SELECT ${{$t... " />
           </folding>
         </state>
       </provider>
@@ -491,6 +599,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.6153846">
           <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -512,6 +621,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="10.703704">
           <caret line="27" column="26" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -519,6 +629,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.558104">
           <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -592,13 +703,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/library/Db/Mysql.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27217126">
-          <caret line="506" column="0" selection-start-line="506" selection-start-column="0" selection-end-line="506" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.3501529">
+          <caret line="509" column="47" selection-start-line="509" selection-start-column="47" selection-end-line="509" selection-end-column="47" />
           <folding>
-            <marker date="1461146896000" expanded="true" signature="6345:6381" placeholder="DELETE FROM " />
-            <marker date="1461146896000" expanded="true" signature="6777:6820" placeholder="DELETE FROM " />
-            <marker date="1461146896000" expanded="true" signature="7266:7358" placeholder="SELECT ${{$t... " />
-            <marker date="1461146896000" expanded="true" signature="8113:8161" placeholder="SELECT ${{$t... " />
+            <marker date="1461147873000" expanded="true" signature="6345:6381" placeholder="DELETE FROM " />
+            <marker date="1461147873000" expanded="true" signature="6777:6820" placeholder="DELETE FROM " />
+            <marker date="1461147873000" expanded="true" signature="7266:7358" placeholder="SELECT ${{$t... " />
+            <marker date="1461147873000" expanded="true" signature="8113:8161" placeholder="SELECT ${{$t... " />
           </folding>
         </state>
       </provider>

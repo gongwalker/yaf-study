@@ -506,6 +506,8 @@ class Db_Mysql
     }
 
     /**
+     * @desc 支持数组形式的参数(使用方法同thinkphp)
+     * http://www.thinkphp.cn/document/314.html
      * @param $tmpWhere
      * @return string
      * @author gwalker
