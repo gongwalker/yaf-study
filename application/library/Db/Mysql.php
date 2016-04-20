@@ -149,28 +149,10 @@ class Db_Mysql
      */
     private function _options($pOpt = array())
     {
-        echo '<hr>';
-
         if(!empty($this->options['where'])) {
             $where = $this->parseWhere($this->options['where']);
         }
-
-
-
-            echo $where;
-        exit;
-
-
-        /*
-        Comm_Tool::dump($this->options['where']);
-        //Comm_Tool::dump($pOpt);
-        echo '<hr>';
-        # 合并查询条件
-        $tOpt = $pOpt ? array_merge($pOpt , $this->options) : $this->options;
-        $this->options = array();
-        */
-
-
+        $tOpt['where'] = $where;
         $this->options = array();
         # 数据表
         empty($tOpt['table']) && $tOpt['table'] = $this->tablename;
