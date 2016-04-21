@@ -149,9 +149,14 @@ class Db_Mysql
      */
     private function _options($pOpt = array())
     {
+        $where = '';
+        //如没有where方法指写where条件且data中包含主键,则用主键做为条件--start
         if(!empty($this->options['where'])) {
             $where = $this->parseWhere($this->options['where']);
+        }else{
+            isset($pOpt['where']) && $where =$pOpt['where'];
         }
+        //如没有where方法指写where条件且data中包含主键,则用主键做为条件--end
         $tOpt['where'] = $where;
         $this->options = array();
         # 数据表
@@ -234,12 +239,11 @@ class Db_Mysql
         if (!$this->_filter($datas)) return false;
         # 条件
         $tOpt = array();
-        //如果data里存在表主键,且没有使用where方法的时候,用此此函数,gongwen 加2016-04-20
+        //如果data里存在表主键,且没有使用where方法的时候,用此函数,gongwen 加2016-04-20
         if (isset($datas[$this->pk])) {
             $tOpt = array('where' => "$this->pk='{$datas[$this->pk]}'");
         }
         $tOpt = $this->_options($tOpt);
-        Comm_Tool::dump($tOpt);
         # 更新
         if ($datas && !empty($tOpt['where'])) {
             foreach ($datas as $k1 => $v1) $tSet[] = "`$k1`='$v1'";

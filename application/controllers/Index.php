@@ -8,7 +8,7 @@ class IndexController extends Yaf_Controller_Abstract {
 
 
 
-        $re = $User->modifyUser(['uid'=>12]);
+        $re = $User->modifyUser(['uid'=>12,'address'=>'vvv']);
         Comm_Tool::dump($re);
 
 

@@ -54,10 +54,15 @@ class UserModel extends Db_Mysql{
         $where = ['name'=>array('LIKE','%a%')];
 
 
+        $where = ['uid'=>1,'name'=>'阿三'];
 
-        $re = self::where($where)->update($map);
+        //$re = self::where($where)->update($map);
         //$re = self::where('uid=2')->update($map);
         //$re = self::where('uid=90')->del();
+        //$re = self::where($where)->update($map);
+
+        //没有where不执行
+        $re = self::update(array('username'=>'v'));
         return $re;
     }
 }
